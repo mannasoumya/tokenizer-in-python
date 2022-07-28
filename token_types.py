@@ -72,6 +72,8 @@ Python_lang = {
     ">"        : "Operator",
     "<"        : "Operator",
     "+"        : "Operator",
+    "-"        : "Operator",
+    "*"        : "Operator",
     ","        : "Comma",
     "="        : "Equals",
     "("        : "Open Paren",
@@ -85,5 +87,8 @@ Python_lang = {
     "\\"       : "Backward Slash",
     ":"        : "Colon",
     "int"      : "Cast",
-    "float"    : "Cast",   
+    "float"    : "Cast",
+    "\""       : "String Identifier",
+    "|"        : "Bitwise or",
+    "&"        : "Bitwise and"
 }

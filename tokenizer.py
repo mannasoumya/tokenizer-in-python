@@ -1,12 +1,9 @@
 #!/usr/bin/python3
 from token_types import C_lang, Python_lang
 import sys
-
 file_name = sys.argv[1]
 
-allowed = ["."]
-
-def tokenize(s,token_types):
+def tokenize(s,token_types,allowed):
     word = ""
     # tokens = []
     i = 0
@@ -19,14 +16,14 @@ def tokenize(s,token_types):
             continue
 
         for j in range(i,len(s)):
+            if s[j] == "|":
+                print(word)
             if s[j] == "\n" or s[j] == " ":
                 i = j + 1
                 break
-            # if s[j] == " ":
-            #     i = j + 1
-            #     break
             if s[j].isalnum() or s[j] in allowed:
                 word = word + s[j]
+                i = j + 1
             if word in token_types:
                 i = j + 1
                 break
@@ -47,6 +44,7 @@ def tokenize(s,token_types):
     # for tok in tokens:
     #     print(tok)
 
+
 tok_dct = {}
 if file_name.endswith("py"):
     tok_dct = Python_lang
@@ -57,13 +55,22 @@ file_content = ""
 with open(file_name,"r") as f:
     file_content = f.read()
 
+# s = "((27/2)+2+{23+22}-10)*3"
+# file_content = s
+
+allowed_in_a_word = [".","_"]  # + list(tok_dct.keys())
+
 count = 0
-z     = tokenize(file_content,tok_dct)
+z     = tokenize(file_content,tok_dct,allowed_in_a_word)
 
 while True:
     try:
         count = count + 1
+        # token, typ = next(z)
+        # if typ == "Word":
+            # print(token)
         print(next(z))
+        # print(token)
     except StopIteration:
         break
 
