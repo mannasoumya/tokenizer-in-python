@@ -16,9 +16,7 @@ def tokenize(s,token_types,allowed):
             continue
 
         for j in range(i,len(s)):
-            if s[j] == "|":
-                print(word)
-            if s[j] == "\n" or s[j] == " ":
+            if s[j] == "\n" or s[j] == " " or s[j] == "\t":
                 i = j + 1
                 break
             if s[j].isalnum() or s[j] in allowed:
